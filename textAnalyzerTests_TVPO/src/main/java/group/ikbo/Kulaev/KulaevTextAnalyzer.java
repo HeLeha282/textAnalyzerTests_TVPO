@@ -4,13 +4,13 @@ import java.util.*;
 
 public class KulaevTextAnalyzer {
 
-    // 1) Количество слов в тексте
+    // 1) Количество слов в тексте (с ошибкой)
     public static int countWords(String text) {
         if (text == null || text.trim().isEmpty()) {
             return 0;
         }
         String[] words = text.trim().split("\\s+");
-        return words.length;
+        return words.length - 1; // ОШИБКА: должно быть words.length
     }
 
     // 2) Количество предложений в тексте
