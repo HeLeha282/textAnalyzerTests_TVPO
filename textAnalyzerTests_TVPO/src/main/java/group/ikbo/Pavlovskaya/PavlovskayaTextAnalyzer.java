@@ -16,10 +16,10 @@ public class PavlovskayaTextAnalyzer {
     // 2. Подсчет слов, начинающихся с заглавной буквы
     public static int countCapitalizedWords(String text) {
         if (text == null || text.trim().isEmpty()) return 0;
-        String[] words = text.split("\\s+");
+        String[] words = text.split("\\s+"); // Разделяем по пробелам
         int count = 0;
         for (String word : words) {
-            if (!word.isEmpty() && Character.isLowerCase(word.charAt(0))) {
+            if (!word.isEmpty() && Character.isUpperCase(word.charAt(0))) {
                 count++;
             }
         }
