@@ -3,16 +3,15 @@ package group.ikbo.Kulaev;
 import java.util.*;
 
 public class KulaevTextAnalyzer {
-
-    // 1) Количество слов в тексте (с ошибкой)
+    // 1) Количество слов в тексте
     public static int countWords(String text) {
         if (text == null || text.trim().isEmpty()) {
             return 0;
         }
         String[] words = text.trim().split("\\s+");
-        return words.length - 1; // ОШИБКА: должно быть words.length
+//        return words.length - 1; версия с ошибкой
+        return words.length; // исправленная версия
     }
-
     // 2) Количество предложений в тексте
     public static int countSentences(String text) {
         if (text == null || text.trim().isEmpty()) {
@@ -26,8 +25,8 @@ public class KulaevTextAnalyzer {
         }
         return count;
     }
-
     // 3) Самое часто встречающееся слово
+    // При равной частоте возвращается слово, встретившееся в тексте первым
     public static String mostFrequentWord(String text) {
         if (text == null || text.trim().isEmpty()) {
             return "";
@@ -35,14 +34,14 @@ public class KulaevTextAnalyzer {
         String[] words = text.toLowerCase()
                 .replaceAll("[^a-zA-Zа-яА-ЯёЁ\\s]", "")
                 .trim().split("\\s+");
-        Map<String, Integer> freq = new HashMap<>();
+        Map<String, Integer> freq = new LinkedHashMap<>(); // сохраняет порядок появления слов
         for (String word : words) {
             freq.put(word, freq.getOrDefault(word, 0) + 1);
         }
         String mostFrequent = "";
         int maxCount = 0;
         for (Map.Entry<String, Integer> entry : freq.entrySet()) {
-            if (entry.getValue() > maxCount) {
+            if (entry.getValue() > maxCount) { // строго больше: при ничьей остаётся первое слово
                 maxCount = entry.getValue();
                 mostFrequent = entry.getKey();
             }
@@ -52,6 +51,9 @@ public class KulaevTextAnalyzer {
 
     // 4) Количество гласных и согласных букв
     public static int[] countVowelsAndConsonants(String text) {
+        if (text == null) {
+            return new int[]{0, 0};
+        }
         String vowels = "аеёиоуыэюяАЕЁИОУЫЭЮЯaeiouAEIOU";
         int vowelsCount = 0;
         int consonantsCount = 0;
