@@ -1,7 +1,7 @@
 package group.ikbo.Pavlovskaya;
 
 public class PavlovskayaTextAnalyzer {
-    // 1. Подсчет количества цифр в тексте (Без ошибок)
+    // 1. Подсчет количества цифр в тексте
     public static int countDigits(String text) {
         if (text == null) return 0;
         int count = 0;
@@ -19,7 +19,6 @@ public class PavlovskayaTextAnalyzer {
         String[] words = text.split("\\s+");
         int count = 0;
         for (String word : words) {
-            // ОШИБКА: Должно быть isUpperCase, но написано isLowerCase
             if (!word.isEmpty() && Character.isLowerCase(word.charAt(0))) {
                 count++;
             }
@@ -27,7 +26,7 @@ public class PavlovskayaTextAnalyzer {
         return count;
     }
 
-    // 3. Подсчет количества запятых (Без ошибок)
+    // 3. Подсчет количества запятых
     public static int countCommas(String text) {
         if (text == null) return 0;
         int count = 0;
@@ -39,13 +38,13 @@ public class PavlovskayaTextAnalyzer {
         return count;
     }
 
-    // 4. Переворачивание текста задом наперед (Без ошибок)
+    // 4. Переворачивание текста задом наперед
     public static String reverseText(String text) {
         if (text == null) return null;
         return new StringBuilder(text).reverse().toString();
     }
 
-    // 5. Замена одного слова на другое (Без ошибок)
+    // 5. Замена одного слова на другое
     public static String replaceWord(String text, String oldWord, String newWord) {
         if (text == null || oldWord == null) return text;
         return text.replace(oldWord, newWord);
